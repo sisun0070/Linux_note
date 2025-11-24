@@ -1,5 +1,6 @@
 # Linux_note
 리눅스 수업 필기 
+https://cafe.daum.net/studyitworld/cH1T
 
 ## 251112 수 ##
 - 리눅스 
