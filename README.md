@@ -641,10 +641,147 @@ else
           실행문...
 f
 
+==========================================================================================
+## 251208 월 ##
 
+쉘 스크립트 제어문
+if, for
 
+= : a와 b가 일치하나? (sql의 = 하나만 써도 일치로 인식하듯이) 
+== : a와 b가 일치히냐 
+!= : a와 b가 일치하지 않다.
+*! : 프로그래밍에서의 부정이라는 뜻
 
+a -eq b : a와 b가 일치한다.
+a -ne b : a와 b가 일치하지 않는다.
+a -lt b : a가 b보다 작다.
+a -le b : a가 b보다 작거나 같다.
+a -gt b : a가 b보다 크다.
+a -ge b : a가 b보다 크거나 같다.
 
+(( expression ))
+- 수식이나 비교 표현식이 들어갈 수 있다.
+!, &&, ||, <<, >>, 증감연산자(++, --)
+
+(ex)
+#!/bin/bash
+
+echo -n "입력 >> "
+read start
+
+if [ $start == "Y" ] || [ $start == "y" ]; then
+        echo "프로그램을 실행합니다"
+else
+        echo "프로그램을 중지합니다"
+fi
+
+quiz)
+사용자로부터 숫자를 입력받아 입력받은 수의 절대값을 구하는 쉘 스크립트를 작성하세요 
+입력 >> -3
+출력 3
+입력 >> 3
+출력 >> 3
+A) 
+#!/bin/bash
+
+echo -n "입력 >> "
+read num
+
+if (( $num < 0 )); then
+        a=$(( -num ))
+else
+        a=$num
+fi
+echo $a
+
+- 쉘 스크립트 else if문
+if 조건식
+         실행문
+else if 조건식
+         실행문
+elif 조건식
+         실행문
+else
+         실행문
+
+quiz2)
+메뉴를 입력받아
+입력받은 수가 1이면 사과
+입력받은 수가 2이면 바나나
+입력받은 수가 3이면 체리
+123 외에 다른 수를 입력받으면 잘못입력하셨습니다를 출력하는 프로그램을 작성하시오
+A)
+#!/bin/bash
+
+echo -n "메뉴를 입력하세요 >> "
+read num
+
+if (( $num == 1 )); then
+        echo "사과"
+elif (( $num == 2 )); then
+        echo "바나나"
+elif (( $num == 3 )); then
+        echo "체리"
+else
+        echo "잘못입력하셨습니다"
+fi
+
+- 쉘 스크립트 case 
+#!/bin/bash
+
+echo "과목을 입력하세요 >> "
+read subject
+
+case "${subject}" in
+        "Linux") echo "리눅스를 수강합니다" ;;
+        "JSP") echo "JSP를 수강합니다" ;;
+        "C") echo "C언어를 수강합니다" ;;
+        "JAVA") echo "JAVA를 수강합니다" ;;
+        * ) echo "수업이 없습니다" ;;
+esac
+
+- 쉘 스크립트 반복문
+반복문 종류 : for, while
+ex) - for 문
+#!/bin/bash
+
+for (( i=1; i<=10; i++ )); do
+        echo ${i}
+done
+
+arr=(10 20 30 40 50)
+for i in "${arr[@]}"
+do
+        echo ${i}
+done
+
+for i in 1 2 3 4 5
+do
+        echo ${i}
+done
+
+ex) - while 문
+#!/bin/bash
+
+cnt=0
+while (( $[cnt] <= 10 ));
+do
+        echo ${cnt}
+        cnt=$(( ${cnt} + 1 ))
+done
+
+- 쉘 스크립트 함수 (function)
+: 자바스크립트처럼 앞에 function 키워드를 안붙혀도 된다. -> 알아서 함수로 인식함.
+: () 안써도 함수 이름만 써도 알아서 호출됨.
+: 파라메타는 () 안에 안써도 됨. -> 파라메타 받는 방법은 따로 있음.
+ex)
+hello(){
+        echo "Hello Shell Script"
+}
+
+hello
+
+================================================================================================================
 
 
 
