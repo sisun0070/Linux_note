@@ -782,8 +782,66 @@ hello(){
 hello
 
 ================================================================================================================
+## 251212 수 ##
 
+1. 파일리스트
+2. 파일삭제
+3. 파일 내용보기 
+4. 종료 
 
+실행결과)
+메뉴입력 >> 1
+/test/파일명
+/test/파일명 
+.,....
+메뉴입력 >> 2
+2번 누르면 삭제할 파일을 입력받아 삭제를 하면 됩니다.
+메뉴입력 >> 3
+3번 누르면 내용을 보고 싶은 파일명을 입력받아 입력받은 파일의 내용을 보면 됩니다
+메뉴입력 >> 4
+종료 
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+퀴즈 정답
+
+#!/bin/bash
+
+DIR="/test/shellscriptDir"
+
+while true
+do
+        echo -n "메뉴입력 >> "
+        read menu
+        if (( ${menu} == 1 )); then
+                #echo "1번"
+                find "$DIR" -type f
+        elif (( ${menu} == 2 )); then
+                #echo "2번"
+                echo -n "삭제할 파일 이름을 입력하세요 >> "
+                read filename
+                filepath="$DIR/$filename"
+                if [ -f "${filepath}" ]; then
+                        rm "${filepath}"
+                        echo "파일이 삭제되었습니다"
+                else
+                        echo "파일이 존재하지 않습니다"
+                fi
+        elif (( ${menu} == 3 )); then
+                #echo "3번"
+                echo -n "내용을 보고 싶은 파일명을 입력하세요 >> "
+                read catfileName
+                catfilePath="${DIR}/${catfileName}"
+                if [ -f "${catfilePath}" ]; then
+                        cat "$catfilePath"
+                else
+                        echo "파일이 존재하지 않습니다"
+                fi
+        elif (( ${menu} == 4 )); then
+                echo "종료"
+                break;
+        fi
+done
 
 
 
